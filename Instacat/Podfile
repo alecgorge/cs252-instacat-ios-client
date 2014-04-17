@@ -1,0 +1,9 @@
+platform :ios, "7.0"
+
+target "Instacat" do
+	pod 'DLCImagePickerController', :git => 'https://github.com/wilferrel/DLCImagePickerController'
+	pod 'AFNetworking', '~> 2.2'
+	pod 'SDWebImage', '~> 3.6'
+	pod 'PWProgressView', '~> 0.0'
+	pod 'FXKeychain', '~> 1.5'
+end
