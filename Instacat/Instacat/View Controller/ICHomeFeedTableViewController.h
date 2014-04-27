@@ -6,8 +6,8 @@
 //  Copyright (c) 2014 Ramblingwood. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "ICRefreshableTableViewController.h"
 
-@interface ICHomeFeedTableViewController : UITableViewController
+@interface ICHomeFeedTableViewController : ICRefreshableTableViewController
 
 @end

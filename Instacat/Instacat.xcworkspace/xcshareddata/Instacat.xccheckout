@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>74CDE1AD-9D9D-42C0-B249-15361DE58E11</string>
+	<key>IDESourceControlProjectName</key>
+	<string>Instacat</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>4840E4CA-573D-4CB7-989A-426E4FD88BFE</key>
+		<string>https://github.com/alecgorge/cs252-instacat-ios-client.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>Instacat/Instacat.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>4840E4CA-573D-4CB7-989A-426E4FD88BFE</key>
+		<string>../..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/alecgorge/cs252-instacat-ios-client.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>110</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>4840E4CA-573D-4CB7-989A-426E4FD88BFE</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>4840E4CA-573D-4CB7-989A-426E4FD88BFE</string>
+			<key>IDESourceControlWCCName</key>
+			<string>cs252-instacat-ios-client</string>
+		</dict>
+	</array>
+</dict>
+</plist>

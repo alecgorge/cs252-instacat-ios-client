@@ -8,112 +8,230 @@
 
 #import "ICHomeFeedTableViewController.h"
 
+#import <PWProgressView/PWProgressView.h>
+#import <SDWebImage/UIImageView+WebCache.h>
+
+typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
+    ICHomeFeedImageRow,
+    ICHomeFeedLikesAndCommentRow,
+    ICHomeFeedRowCount,
+};
+
 @interface ICHomeFeedTableViewController ()
+
+@property NSArray *images;
+@property CGSize imageSize;
 
 @end
 
 @implementation ICHomeFeedTableViewController
 
-- (id)initWithStyle:(UITableViewStyle)style
-{
-    self = [super initWithStyle:style];
-    if (self) {
-        // Custom initialization
-    }
-    return self;
-}
-
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
+    self.title = @"Instacat";
+    self.images = @[];
+    self.imageSize = CGSizeMake(self.tableView.bounds.size.width, self.tableView.bounds.size.width);
     
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    [self.tableView registerClass:UITableViewCell.class
+           forCellReuseIdentifier:@"image"];
+    [self.tableView registerClass:UITableViewCell.class
+           forCellReuseIdentifier:@"cell"];
+    
+    self.tableView.separatorColor = UIColor.clearColor;
 }
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated {
+    if(ICGateway.sharedInstance.isSignedIn) {
+        self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"Sign Out"
+                                                                                  style:UIBarButtonItemStyleBordered
+                                                                                 target:self
+                                                                                 action:@selector(signOut)];
+    }
+    else {
+        self.navigationItem.rightBarButtonItem = nil;
+    }
+}
+
+- (void)signOut {
+    self.navigationItem.rightBarButtonItem = nil;
+    [ICGateway.sharedInstance signOut];
+}
+
+- (void)refresh:(UIRefreshControl *)sender {
+    [ICAPIClient.sharedInstance images:^(NSArray *images) {
+        if(images) {
+            self.images = images;
+            [self.tableView reloadData];
+        }
+        
+        [super refresh:sender];
+    }];
+}
+
+- (void)likeImage:(UIButton*)button {
+    // tag is set to the section number of the table in cellForRowAtIndexPath
+    ICImage *image = self.images[button.tag];
+}
+
+- (void)commentImage:(UIButton*)button {
+    // tag is set to the section number of the table in cellForRowAtIndexPath
+    ICImage *image = self.images[button.tag];
 }
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
-{
-#warning Potentially incomplete method implementation.
-    // Return the number of sections.
-    return 0;
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return self.images.count;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-#warning Incomplete method implementation.
-    // Return the number of rows in the section.
-    return 0;
+- (NSInteger)tableView:(UITableView *)tableView
+ numberOfRowsInSection:(NSInteger)section {
+    return ICHomeFeedRowCount;
 }
 
-/*
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:<#@"reuseIdentifier"#> forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    ICImage *image = self.images[indexPath.section];
+    NSInteger row = indexPath.row;
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:row == ICHomeFeedImageRow ? @"image" : @"cell"
+                                                            forIndexPath:indexPath];
+    
+    if (row == ICHomeFeedImageRow) {
+        UIImageView *imgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, self.imageSize.width, self.imageSize.height)];
+        imgView.contentMode = UIViewContentModeScaleAspectFill;
+        imgView.clipsToBounds = YES;
+        
+        PWProgressView *prog = [[PWProgressView alloc] initWithFrame:imgView.bounds];
+        prog.alpha = 0;
+        
+        [imgView addSubview:prog];
+        
+        [imgView setImageWithURL:image.imageURL
+                placeholderImage:nil
+                         options:0
+                        progress:^(NSInteger receivedSize, NSInteger expectedSize) {
+                            prog.alpha = 1;
+                            prog.progress = (float) receivedSize / (float) expectedSize;
+                        }
+                       completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType) {
+                           if(error) {
+                               dbug(@"err: %@", error);
+                           }
+                           
+                           [UIView animateWithDuration:0.1
+                                            animations:^{
+                                                prog.alpha = 0;
+                                            }
+                                            completion:^(BOOL finished) {
+                                                [prog removeFromSuperview];
+                                            }];
+                       }];
+        
+        cell.contentView.clipsToBounds = YES;
+        [cell.contentView addSubview:imgView];
+    }
+    else if(row == ICHomeFeedLikesAndCommentRow) {
+        cell.textLabel.text = [NSString stringWithFormat:@"%lu likes, %lu comments", image.likes.count, image.comments.count];
+        cell.textLabel.textColor = IC_TEXT_COLOR;
+        cell.textLabel.font = [UIFont systemFontOfSize:IC_TEXT_SIZE];
+        
+        UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+        [likeButton setImage:[UIImage imageNamed:@"glyphicons_343_thumbs_up"]
+                    forState:UIControlStateNormal];
+        [commentButton setImage:[UIImage imageNamed:@"glyphicons_309_comments"]
+                       forState:UIControlStateNormal];
+        
+        commentButton.tag = likeButton.tag = indexPath.section;
+        commentButton.contentMode = likeButton.contentMode = UIViewContentModeCenter;
+        
+        [likeButton addTarget:self
+                       action:@selector(likeImage:)
+             forControlEvents:UIControlEventTouchUpInside];
+        [commentButton addTarget:self
+                          action:@selector(commentImage:)
+                forControlEvents:UIControlEventTouchUpInside];
+        
+        int buttonSize = 44;
+        int spacing = 2 * buttonSize / 2;
+        
+        likeButton.frame = CGRectMake(0, 0, buttonSize, buttonSize);
+        commentButton.frame = CGRectMake(spacing, 0, buttonSize, buttonSize);
+        
+        UIView *container = [[UIView alloc] initWithFrame:CGRectMake(0, 0, buttonSize * 2, buttonSize)];
+        [container addSubview:likeButton];
+        [container addSubview:commentButton];
+        
+        [container sizeToFit];
+        
+        cell.accessoryView = container;
+    }
     
     return cell;
 }
-*/
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
+- (NSString *)tableView:(UITableView *)tableView
+titleForHeaderInSection:(NSInteger)section {
+    ICImage *image = self.images[section];
+    
+    return image.user.handle;
 }
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
+- (UIView*)tableView:(UITableView*)tableView
+viewForHeaderInSection:(NSInteger)section {
+    UIView* view = [[UIView alloc] init];
+    UILabel* label = [[UILabel alloc] init];
+    
+    view.backgroundColor = [UIColor.whiteColor colorWithAlphaComponent:0.8];
+    
+    label.text = [self tableView: tableView titleForHeaderInSection: section];
+    label.textAlignment = NSTextAlignmentLeft;
+    label.textColor = IC_TEXT_COLOR;
+    label.font = [UIFont systemFontOfSize:IC_TEXT_SIZE];
+    
+    [label sizeToFit];
+    label.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [view addSubview:label];
+    
+    [view addConstraints:
+     @[[NSLayoutConstraint constraintWithItem:label
+                                    attribute:NSLayoutAttributeCenterX
+                                    relatedBy:NSLayoutRelationEqual
+                                       toItem:view
+                                    attribute:NSLayoutAttributeCenterX
+                                   multiplier:1 constant:0],
+       [NSLayoutConstraint constraintWithItem:label
+                                    attribute:NSLayoutAttributeCenterY
+                                    relatedBy:NSLayoutRelationEqual
+                                       toItem:view
+                                    attribute:NSLayoutAttributeCenterY
+                                   multiplier:1 constant:0],
+       [NSLayoutConstraint constraintWithItem:label
+                                    attribute:NSLayoutAttributeLeading
+                                    relatedBy:NSLayoutRelationEqual
+                                       toItem:view
+                                    attribute:NSLayoutAttributeLeft
+                                   multiplier:0 constant:15],
+       ]];
+    
+    return view;
 }
-*/
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
+-(CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return tableView.rowHeight;
 }
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
+- (CGFloat)tableView:(UITableView *)tableView
+heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == ICHomeFeedImageRow) {
+        return self.imageSize.height;
+    }
+    
+    return UITableViewAutomaticDimension;
 }
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

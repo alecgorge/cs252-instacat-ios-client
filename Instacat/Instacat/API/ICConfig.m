@@ -11,7 +11,7 @@
 @implementation ICConfig
 
 + (NSURL *)apiBase {
-    return [NSURL URLWithString:@"http://localhost:3000/api"];
+    return [NSURL URLWithString:@"http://instacat.alecgorge.com:3000/api/"];
 }
 
 @end

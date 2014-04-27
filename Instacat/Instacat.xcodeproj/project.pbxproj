@@ -22,6 +22,23 @@
 		7C58EBEB18FEDE1F00DE68B7 /* InstacatTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C58EBEA18FEDE1F00DE68B7 /* InstacatTests.m */; };
 		7C58EBF918FF4BB300DE68B7 /* ICHomeFeedTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C58EBF818FF4BB300DE68B7 /* ICHomeFeedTableViewController.m */; };
 		7C58EBFD18FF4BD200DE68B7 /* ICConfig.m in Sources */ = {isa = PBXBuildFile; fileRef = 7C58EBFC18FF4BD200DE68B7 /* ICConfig.m */; };
+		7CCA4150190C0BEE00801762 /* ICAPIClient.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCA414F190C0BEE00801762 /* ICAPIClient.m */; };
+		7CCA4154190C0D8800801762 /* ICImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCA4153190C0D8800801762 /* ICImage.m */; };
+		7CCA4157190C0E3800801762 /* ICLike.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCA4156190C0E3800801762 /* ICLike.m */; };
+		7CCA415A190C0E7E00801762 /* ICComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCA4159190C0E7E00801762 /* ICComment.m */; };
+		7CCA415D190C0E8700801762 /* ICJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCA415C190C0E8700801762 /* ICJSONModel.m */; };
+		7CCA4161190C110C00801762 /* ICRefreshableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CCA4160190C110C00801762 /* ICRefreshableTableViewController.m */; };
+		7CCA4164190C157300801762 /* glyphicons_343_thumbs_up.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCA4162190C157300801762 /* glyphicons_343_thumbs_up.png */; };
+		7CCA4165190C157300801762 /* glyphicons_343_thumbs_up@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCA4163190C157300801762 /* glyphicons_343_thumbs_up@2x.png */; };
+		7CCA4169190C169800801762 /* glyphicons_309_comments.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCA4167190C169800801762 /* glyphicons_309_comments.png */; };
+		7CCA416A190C169800801762 /* glyphicons_309_comments@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CCA4168190C169800801762 /* glyphicons_309_comments@2x.png */; };
+		7CE21556190C5BC000ADE1FE /* ICPhotoPickerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CE21555190C5BC000ADE1FE /* ICPhotoPickerViewController.m */; };
+		7CF96D72190C1C3300219418 /* ICUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96D71190C1C3300219418 /* ICUser.m */; };
+		7CF96D75190C225400219418 /* glyphicons_011_camera.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF96D73190C225400219418 /* glyphicons_011_camera.png */; };
+		7CF96D76190C225400219418 /* glyphicons_011_camera@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 7CF96D74190C225400219418 /* glyphicons_011_camera@2x.png */; };
+		7CF96D79190C32F500219418 /* ICGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96D78190C32F500219418 /* ICGateway.m */; };
+		7CF96D7E190C38B600219418 /* ICSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96D7B190C38B600219418 /* ICSignInViewController.m */; };
+		7CF96D7F190C38B600219418 /* ICSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96D7D190C38B600219418 /* ICSignUpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +73,34 @@
 		7C58EBF818FF4BB300DE68B7 /* ICHomeFeedTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICHomeFeedTableViewController.m; path = "View Controller/ICHomeFeedTableViewController.m"; sourceTree = "<group>"; };
 		7C58EBFB18FF4BD200DE68B7 /* ICConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ICConfig.h; path = API/ICConfig.h; sourceTree = "<group>"; };
 		7C58EBFC18FF4BD200DE68B7 /* ICConfig.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICConfig.m; path = API/ICConfig.m; sourceTree = "<group>"; };
+		7CCA414E190C0BEE00801762 /* ICAPIClient.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ICAPIClient.h; path = API/ICAPIClient.h; sourceTree = "<group>"; };
+		7CCA414F190C0BEE00801762 /* ICAPIClient.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICAPIClient.m; path = API/ICAPIClient.m; sourceTree = "<group>"; };
+		7CCA4152190C0D8800801762 /* ICImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICImage.h; sourceTree = "<group>"; };
+		7CCA4153190C0D8800801762 /* ICImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICImage.m; sourceTree = "<group>"; };
+		7CCA4155190C0E3800801762 /* ICLike.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ICLike.h; path = API/Models/ICLike.h; sourceTree = "<group>"; };
+		7CCA4156190C0E3800801762 /* ICLike.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICLike.m; path = API/Models/ICLike.m; sourceTree = "<group>"; };
+		7CCA4158190C0E7E00801762 /* ICComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICComment.h; sourceTree = "<group>"; };
+		7CCA4159190C0E7E00801762 /* ICComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICComment.m; sourceTree = "<group>"; };
+		7CCA415B190C0E8700801762 /* ICJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICJSONModel.h; sourceTree = "<group>"; };
+		7CCA415C190C0E8700801762 /* ICJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICJSONModel.m; sourceTree = "<group>"; };
+		7CCA415F190C110C00801762 /* ICRefreshableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICRefreshableTableViewController.h; sourceTree = "<group>"; };
+		7CCA4160190C110C00801762 /* ICRefreshableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICRefreshableTableViewController.m; sourceTree = "<group>"; };
+		7CCA4162190C157300801762 /* glyphicons_343_thumbs_up.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_343_thumbs_up.png; sourceTree = "<group>"; };
+		7CCA4163190C157300801762 /* glyphicons_343_thumbs_up@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons_343_thumbs_up@2x.png"; sourceTree = "<group>"; };
+		7CCA4167190C169800801762 /* glyphicons_309_comments.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_309_comments.png; sourceTree = "<group>"; };
+		7CCA4168190C169800801762 /* glyphicons_309_comments@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons_309_comments@2x.png"; sourceTree = "<group>"; };
+		7CE21554190C5BC000ADE1FE /* ICPhotoPickerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ICPhotoPickerViewController.h; path = "View Controller/ICPhotoPickerViewController.h"; sourceTree = "<group>"; };
+		7CE21555190C5BC000ADE1FE /* ICPhotoPickerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICPhotoPickerViewController.m; path = "View Controller/ICPhotoPickerViewController.m"; sourceTree = "<group>"; };
+		7CF96D70190C1C3300219418 /* ICUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ICUser.h; path = API/Models/ICUser.h; sourceTree = "<group>"; };
+		7CF96D71190C1C3300219418 /* ICUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICUser.m; path = API/Models/ICUser.m; sourceTree = "<group>"; };
+		7CF96D73190C225400219418 /* glyphicons_011_camera.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = glyphicons_011_camera.png; sourceTree = "<group>"; };
+		7CF96D74190C225400219418 /* glyphicons_011_camera@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "glyphicons_011_camera@2x.png"; sourceTree = "<group>"; };
+		7CF96D77190C32F500219418 /* ICGateway.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ICGateway.h; path = API/ICGateway.h; sourceTree = "<group>"; };
+		7CF96D78190C32F500219418 /* ICGateway.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ICGateway.m; path = API/ICGateway.m; sourceTree = "<group>"; };
+		7CF96D7A190C38B600219418 /* ICSignInViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICSignInViewController.h; sourceTree = "<group>"; };
+		7CF96D7B190C38B600219418 /* ICSignInViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICSignInViewController.m; sourceTree = "<group>"; };
+		7CF96D7C190C38B600219418 /* ICSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICSignUpViewController.h; sourceTree = "<group>"; };
+		7CF96D7D190C38B600219418 /* ICSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICSignUpViewController.m; sourceTree = "<group>"; };
 		ADF10E3A87304B84A845D189 /* libPods-Instacat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instacat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -87,8 +132,15 @@
 		7C21250718FF001400EC5C1B /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7CCA415E190C10FF00801762 /* Base */,
 				7C58EBF718FF4BB300DE68B7 /* ICHomeFeedTableViewController.h */,
 				7C58EBF818FF4BB300DE68B7 /* ICHomeFeedTableViewController.m */,
+				7CF96D7A190C38B600219418 /* ICSignInViewController.h */,
+				7CF96D7B190C38B600219418 /* ICSignInViewController.m */,
+				7CF96D7C190C38B600219418 /* ICSignUpViewController.h */,
+				7CF96D7D190C38B600219418 /* ICSignUpViewController.m */,
+				7CE21554190C5BC000ADE1FE /* ICPhotoPickerViewController.h */,
+				7CE21555190C5BC000ADE1FE /* ICPhotoPickerViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -134,8 +186,6 @@
 				7C58EBD518FEDE1F00DE68B7 /* ICAppDelegate.m */,
 				7C58EBD718FEDE1F00DE68B7 /* Images.xcassets */,
 				7C58EBCC18FEDE1F00DE68B7 /* Supporting Files */,
-				7C58EBFB18FF4BD200DE68B7 /* ICConfig.h */,
-				7C58EBFC18FF4BD200DE68B7 /* ICConfig.m */,
 			);
 			path = Instacat;
 			sourceTree = "<group>";
@@ -143,6 +193,7 @@
 		7C58EBCC18FEDE1F00DE68B7 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				7CCA4166190C157600801762 /* Images */,
 				7C58EBCD18FEDE1F00DE68B7 /* Instacat-Info.plist */,
 				7C58EBCE18FEDE1F00DE68B7 /* InfoPlist.strings */,
 				7C58EBD118FEDE1F00DE68B7 /* main.m */,
@@ -172,8 +223,54 @@
 		7C58EBFA18FF4BB800DE68B7 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				7CCA4151190C0D7700801762 /* Models */,
+				7C58EBFB18FF4BD200DE68B7 /* ICConfig.h */,
+				7C58EBFC18FF4BD200DE68B7 /* ICConfig.m */,
+				7CCA414E190C0BEE00801762 /* ICAPIClient.h */,
+				7CCA414F190C0BEE00801762 /* ICAPIClient.m */,
+				7CF96D77190C32F500219418 /* ICGateway.h */,
+				7CF96D78190C32F500219418 /* ICGateway.m */,
 			);
 			name = API;
+			sourceTree = "<group>";
+		};
+		7CCA4151190C0D7700801762 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7CCA4152190C0D8800801762 /* ICImage.h */,
+				7CCA4153190C0D8800801762 /* ICImage.m */,
+				7CCA4155190C0E3800801762 /* ICLike.h */,
+				7CCA4156190C0E3800801762 /* ICLike.m */,
+				7CCA4158190C0E7E00801762 /* ICComment.h */,
+				7CCA4159190C0E7E00801762 /* ICComment.m */,
+				7CCA415B190C0E8700801762 /* ICJSONModel.h */,
+				7CCA415C190C0E8700801762 /* ICJSONModel.m */,
+				7CF96D70190C1C3300219418 /* ICUser.h */,
+				7CF96D71190C1C3300219418 /* ICUser.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		7CCA415E190C10FF00801762 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				7CCA415F190C110C00801762 /* ICRefreshableTableViewController.h */,
+				7CCA4160190C110C00801762 /* ICRefreshableTableViewController.m */,
+			);
+			name = Base;
+			sourceTree = "<group>";
+		};
+		7CCA4166190C157600801762 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				7CF96D73190C225400219418 /* glyphicons_011_camera.png */,
+				7CF96D74190C225400219418 /* glyphicons_011_camera@2x.png */,
+				7CCA4167190C169800801762 /* glyphicons_309_comments.png */,
+				7CCA4168190C169800801762 /* glyphicons_309_comments@2x.png */,
+				7CCA4162190C157300801762 /* glyphicons_343_thumbs_up.png */,
+				7CCA4163190C157300801762 /* glyphicons_343_thumbs_up@2x.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -254,8 +351,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CCA4164190C157300801762 /* glyphicons_343_thumbs_up.png in Resources */,
 				7C58EBD018FEDE1F00DE68B7 /* InfoPlist.strings in Resources */,
+				7CF96D76190C225400219418 /* glyphicons_011_camera@2x.png in Resources */,
 				7C58EBD818FEDE1F00DE68B7 /* Images.xcassets in Resources */,
+				7CCA4165190C157300801762 /* glyphicons_343_thumbs_up@2x.png in Resources */,
+				7CCA4169190C169800801762 /* glyphicons_309_comments.png in Resources */,
+				7CCA416A190C169800801762 /* glyphicons_309_comments@2x.png in Resources */,
+				7CF96D75190C225400219418 /* glyphicons_011_camera.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -307,9 +410,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7CF96D79190C32F500219418 /* ICGateway.m in Sources */,
 				7C58EBF918FF4BB300DE68B7 /* ICHomeFeedTableViewController.m in Sources */,
+				7CCA4154190C0D8800801762 /* ICImage.m in Sources */,
+				7CCA415D190C0E8700801762 /* ICJSONModel.m in Sources */,
+				7CCA4161190C110C00801762 /* ICRefreshableTableViewController.m in Sources */,
 				7C58EBD618FEDE1F00DE68B7 /* ICAppDelegate.m in Sources */,
+				7CF96D7F190C38B600219418 /* ICSignUpViewController.m in Sources */,
+				7CCA4157190C0E3800801762 /* ICLike.m in Sources */,
+				7CE21556190C5BC000ADE1FE /* ICPhotoPickerViewController.m in Sources */,
 				7C58EBD218FEDE1F00DE68B7 /* main.m in Sources */,
+				7CF96D7E190C38B600219418 /* ICSignInViewController.m in Sources */,
+				7CF96D72190C1C3300219418 /* ICUser.m in Sources */,
+				7CCA415A190C0E7E00801762 /* ICComment.m in Sources */,
+				7CCA4150190C0BEE00801762 /* ICAPIClient.m in Sources */,
 				7C58EBFD18FF4BD200DE68B7 /* ICConfig.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
