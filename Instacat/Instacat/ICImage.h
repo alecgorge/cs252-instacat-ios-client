@@ -22,4 +22,6 @@
 
 @property (readonly, nonatomic) NSURL<Ignore> *imageURL;
 
+@property (nonatomic) BOOL isLikedLocally;
+
 @end

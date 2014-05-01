@@ -10,6 +10,7 @@
 
 #import <PWProgressView/PWProgressView.h>
 #import <SDWebImage/UIImageView+WebCache.h>
+#import <CRToast/CRToast.h>
 
 typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
     ICHomeFeedImageRow,
@@ -72,6 +73,33 @@ typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
 - (void)likeImage:(UIButton*)button {
     // tag is set to the section number of the table in cellForRowAtIndexPath
     ICImage *image = self.images[button.tag];
+    
+    if (image.isLikedLocally == YES) {
+        return;
+    }
+    
+    image.isLikedLocally = YES;
+
+    [ICAPIClient.sharedInstance likeImage:image
+                                  success:^(NSError *err) {
+                                      if(err) {
+                                          [CRToastManager showNotificationWithOptions:@{
+                                                                                        kCRToastNotificationTypeKey             : @(CRToastTypeNavigationBar),
+                                                                                        kCRToastBackgroundColorKey              : UIColor.redColor,
+                                                                                        kCRToastNotificationPresentationTypeKey : @(CRToastPresentationTypeCover),
+                                                                                        kCRToastUnderStatusBarKey               : @(YES),
+                                                                                        kCRToastTextKey                         : err.localizedDescription,
+                                                                                        kCRToastTimeIntervalKey                 : @(5)
+                                                                                        }
+                                                                      completionBlock:^{
+                                                                          
+                                                                      }];
+
+                                      }
+                                  }];
+    
+    [self.tableView reloadData];
+    
 }
 
 - (void)commentImage:(UIButton*)button {
@@ -133,7 +161,7 @@ typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
         [cell.contentView addSubview:imgView];
     }
     else if(row == ICHomeFeedLikesAndCommentRow) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%lu likes, %lu comments", image.likes.count, image.comments.count];
+        cell.textLabel.text = [NSString stringWithFormat:@"%lu likes, %lu comments", (unsigned long)image.likes.count + image.isLikedLocally, (unsigned long)image.comments.count];
         cell.textLabel.textColor = IC_TEXT_COLOR;
         cell.textLabel.font = [UIFont systemFontOfSize:IC_TEXT_SIZE];
         

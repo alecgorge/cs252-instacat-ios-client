@@ -19,6 +19,8 @@
 /// @param success Images is an array of ICImage's
 - (void)images:(void(^)(NSArray *images)) success;
 
+- (void)image:(NSString *)uuid success:(void(^)(ICImage *image)) success;
+
 - (void)postImage:(NSData*)image success:(void(^)(void)) success;
 
 - (void)verifyUsername:(NSString *)username

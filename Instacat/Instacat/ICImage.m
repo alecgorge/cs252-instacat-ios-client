@@ -16,4 +16,12 @@
                                URLByAppendingPathExtension:@"jpg"];
 }
 
++ (BOOL)propertyIsIgnored:(NSString *)propertyName {
+    if([propertyName isEqualToString:@"isLikedLocally"]) {
+        return YES;
+    }
+    
+    return NO;
+}
+
 @end

@@ -23,12 +23,12 @@
 
 - (void)failure:(NSError *)error {
     [CRToastManager showNotificationWithOptions:@{
-                                                  kCRToastNotificationTypeKey             : @(CRToastTypeNavigationBar),
-                                                  kCRToastBackgroundColorKey              : UIColor.redColor,
-                                                  kCRToastNotificationPresentationTypeKey : @(CRToastPresentationTypeCover),
-                                                  kCRToastUnderStatusBarKey               : @(YES),
-                                                  kCRToastTextKey                         : error.localizedDescription,
-                                                  kCRToastTimeIntervalKey                 : @(5)
+      kCRToastNotificationTypeKey             : @(CRToastTypeNavigationBar),
+      kCRToastBackgroundColorKey              : UIColor.redColor,
+      kCRToastNotificationPresentationTypeKey : @(CRToastPresentationTypeCover),
+      kCRToastUnderStatusBarKey               : @(YES),
+      kCRToastTextKey                         : error.localizedDescription,
+      kCRToastTimeIntervalKey                 : @(5)
                                                   }
                                 completionBlock:^{
                                     
@@ -53,6 +53,30 @@
           }];
           
           success(r);
+      }
+      failure:^(NSURLSessionDataTask *task, NSError *error) {
+          dbug(@"task: %@\n%@", task.response, error);
+          [self failure:error];
+          
+          success(nil);
+      }];
+}
+
+- (void)image:(NSString *)uuid
+      success:(void (^)(ICImage *))success {
+    [self GET:[@"images/" stringByAppendingString:uuid]
+   parameters:nil
+      success:^(NSURLSessionDataTask *task, id responseObject) {
+          NSError *err;
+          ICImage *i = [[ICImage alloc] initWithDictionary:responseObject
+                                                     error:&err];
+          
+          if(err) {
+              [self failure:err];
+              dbug(@"json: %@", err);
+          }
+          
+          success(i);
       }
       failure:^(NSURLSessionDataTask *task, NSError *error) {
           dbug(@"task: %@\n%@", task.response, error);
@@ -131,7 +155,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
            dbug(@"task: %@\n%@", task.response, error);
-           [self failure:error];
            
            success(error);
        }];
@@ -149,7 +172,6 @@ constructingBodyWithBlock:^(id<AFMultipartFormData> formData) {
        }
        failure:^(NSURLSessionDataTask *task, NSError *error) {
            dbug(@"task: %@\n%@", task.response, error);
-           [self failure:error];
            
            success(error);
        }];
