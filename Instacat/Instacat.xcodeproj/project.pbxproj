@@ -39,6 +39,7 @@
 		7CF96D79190C32F500219418 /* ICGateway.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96D78190C32F500219418 /* ICGateway.m */; };
 		7CF96D7E190C38B600219418 /* ICSignInViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96D7B190C38B600219418 /* ICSignInViewController.m */; };
 		7CF96D7F190C38B600219418 /* ICSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 7CF96D7D190C38B600219418 /* ICSignUpViewController.m */; };
+		C1B521061911E5040077FB5A /* ICImageViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C1B521051911E5040077FB5A /* ICImageViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -102,6 +103,8 @@
 		7CF96D7C190C38B600219418 /* ICSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICSignUpViewController.h; sourceTree = "<group>"; };
 		7CF96D7D190C38B600219418 /* ICSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICSignUpViewController.m; sourceTree = "<group>"; };
 		ADF10E3A87304B84A845D189 /* libPods-Instacat.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Instacat.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		C1B521041911E5040077FB5A /* ICImageViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ICImageViewController.h; sourceTree = "<group>"; };
+		C1B521051911E5040077FB5A /* ICImageViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ICImageViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,6 +144,8 @@
 				7CF96D7D190C38B600219418 /* ICSignUpViewController.m */,
 				7CE21554190C5BC000ADE1FE /* ICPhotoPickerViewController.h */,
 				7CE21555190C5BC000ADE1FE /* ICPhotoPickerViewController.m */,
+				C1B521041911E5040077FB5A /* ICImageViewController.h */,
+				C1B521051911E5040077FB5A /* ICImageViewController.m */,
 			);
 			name = "View Controllers";
 			sourceTree = "<group>";
@@ -410,6 +415,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1B521061911E5040077FB5A /* ICImageViewController.m in Sources */,
 				7CF96D79190C32F500219418 /* ICGateway.m in Sources */,
 				7C58EBF918FF4BB300DE68B7 /* ICHomeFeedTableViewController.m in Sources */,
 				7CCA4154190C0D8800801762 /* ICImage.m in Sources */,

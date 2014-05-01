@@ -7,6 +7,7 @@
 //
 
 #import "ICHomeFeedTableViewController.h"
+#import "ICImageViewController.h"
 
 #import <PWProgressView/PWProgressView.h>
 #import <SDWebImage/UIImageView+WebCache.h>
@@ -135,17 +136,14 @@ typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
                                                        
                                                    }
                                                }];
+            /*NSMutableArray *temp = [image.comments mutableCopy];
+            [temp addObject:composeViewController.text];
+            image.comments = (NSArray<ICComment>*)temp;
+            [self.tableView reloadData];*/
             
         }
     };
-    
-    ICComment *comment = [[ICComment alloc] init];
-    comment.text = composeViewController.text;
-    NSMutableArray * temp = [image.comments mutableCopy];
-    [temp addObject:comment];
-    image.comments = (NSArray<ICComment>*)temp;
-    [self.tableView reloadData];
-}
+   }
 
 #pragma mark - Table view data source
 
@@ -204,6 +202,7 @@ typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
         cell.textLabel.text = [NSString stringWithFormat:@"%lu likes, %lu comments", (unsigned long)image.likes.count + image.isLikedLocally, (unsigned long)image.comments.count];
         cell.textLabel.textColor = IC_TEXT_COLOR;
         cell.textLabel.font = [UIFont systemFontOfSize:IC_TEXT_SIZE];
+        cell.userInteractionEnabled = YES;
         
         UIButton *likeButton = [UIButton buttonWithType:UIButtonTypeCustom];
         UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -300,6 +299,12 @@ heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     }
     
     return UITableViewAutomaticDimension;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    ICImage *image = self.images[indexPath.section];
+    ICImageViewController *imageController = [[ICImageViewController alloc] initWithImage:image];
+    [self.navigationController pushViewController:imageController animated:YES];
 }
 
 @end
