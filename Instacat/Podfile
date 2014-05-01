@@ -9,4 +9,5 @@ target "Instacat" do
     pod 'CRToast', '~> 0.0'
     pod 'JSONModel', '~> 0.13'
     pod 'MKFoundationKit', '~> 1.2'
+    pod 'REComposeViewController', '~> 2.3.1'
 end

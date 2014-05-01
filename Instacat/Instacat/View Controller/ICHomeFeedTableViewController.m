@@ -11,6 +11,7 @@
 #import <PWProgressView/PWProgressView.h>
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <CRToast/CRToast.h>
+#import <REComposeViewController/REComposeViewController.h>
 
 typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
     ICHomeFeedImageRow,
@@ -105,6 +106,45 @@ typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
 - (void)commentImage:(UIButton*)button {
     // tag is set to the section number of the table in cellForRowAtIndexPath
     ICImage *image = self.images[button.tag];
+    REComposeViewController *composeViewController = [[REComposeViewController alloc] init];
+    composeViewController.title = @"Comment";
+    composeViewController.hasAttachment = NO;
+    composeViewController.attachmentImage = nil;
+    [composeViewController presentFromRootViewController];
+    
+    // handle the comment
+    composeViewController.completionHandler = ^(REComposeViewController *composeViewController, REComposeResult result) {
+        [composeViewController dismissViewControllerAnimated:YES completion:nil];
+        
+        if (result == REComposeResultPosted) {
+            [ICAPIClient.sharedInstance commentOnImage:image
+                                               comment:composeViewController.text
+                                               success:^(NSError *err) {
+                                                   if(err) {
+                                                       [CRToastManager showNotificationWithOptions:@{
+                                                                                                     kCRToastNotificationTypeKey             : @(CRToastTypeNavigationBar),
+                                                                                                     kCRToastBackgroundColorKey              : UIColor.redColor,
+                                                                                                     kCRToastNotificationPresentationTypeKey : @(CRToastPresentationTypeCover),
+                                                                                                     kCRToastUnderStatusBarKey               : @(YES),
+                                                                                                     kCRToastTextKey                         : err.localizedDescription,
+                                                                                                     kCRToastTimeIntervalKey                 : @(5)
+                                                                                                     }
+                                                                                   completionBlock:^{
+                                                                                       
+                                                                                   }];
+                                                       
+                                                   }
+                                               }];
+            
+        }
+    };
+    
+    ICComment *comment = [[ICComment alloc] init];
+    comment.text = composeViewController.text;
+    NSMutableArray * temp = [image.comments mutableCopy];
+    [temp addObject:comment];
+    image.comments = (NSArray<ICComment>*)temp;
+    [self.tableView reloadData];
 }
 
 #pragma mark - Table view data source
