@@ -23,5 +23,6 @@
 @property (readonly, nonatomic) NSURL<Ignore> *imageURL;
 
 @property (nonatomic) BOOL isLikedLocally;
+@property (nonatomic) BOOL isCommentedLocally;
 
 @end

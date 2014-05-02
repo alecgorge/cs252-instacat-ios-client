@@ -28,9 +28,6 @@
 {
     [super viewDidLoad];
     
-    [self.tableView registerClass:UITableViewCell.class
-           forCellReuseIdentifier:@"Cell"];
-    
     self.title = @"Likes and Comments";
 }
 
@@ -54,22 +51,27 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    UITableViewCell *cell;
     
     // Configure the cell...
     if (indexPath.section == 0) {
         for (int i = 0; i < self.image.likes.count; i++) {
             if (indexPath.row == i) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"cell"];
                 ICLike *temp = [self.image.likes objectAtIndex:i];
                 cell.textLabel.text = temp.handle;
+                cell.userInteractionEnabled = NO;
             }
         }
     }
     else if (indexPath.section == 1) {
         for (int i = 0; i < self.image.comments.count; i++) {
             if (indexPath.row == i) {
+                cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"cell"];
                 ICComment *temp = [self.image.comments objectAtIndex:i];
-                cell.textLabel.text = [NSString stringWithFormat:@"%@: %@", temp.handle, temp.text];
+                cell.textLabel.text = temp.text;
+                cell.detailTextLabel.text = temp.handle;
+                cell.userInteractionEnabled = NO;
             }
         }
     }

@@ -136,10 +136,8 @@ typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
                                                        
                                                    }
                                                }];
-            /*NSMutableArray *temp = [image.comments mutableCopy];
-            [temp addObject:composeViewController.text];
-            image.comments = (NSArray<ICComment>*)temp;
-            [self.tableView reloadData];*/
+            image.isCommentedLocally = YES;
+            [self.tableView reloadData];
             
         }
     };
@@ -199,7 +197,7 @@ typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
         [cell.contentView addSubview:imgView];
     }
     else if(row == ICHomeFeedLikesAndCommentRow) {
-        cell.textLabel.text = [NSString stringWithFormat:@"%lu likes, %lu comments", (unsigned long)image.likes.count + image.isLikedLocally, (unsigned long)image.comments.count];
+        cell.textLabel.text = [NSString stringWithFormat:@"%lu likes, %lu comments", (unsigned long)image.likes.count + image.isLikedLocally, (unsigned long)image.comments.count + image.isCommentedLocally];
         cell.textLabel.textColor = IC_TEXT_COLOR;
         cell.textLabel.font = [UIFont systemFontOfSize:IC_TEXT_SIZE];
         cell.userInteractionEnabled = YES;

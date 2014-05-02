@@ -20,6 +20,9 @@
     if([propertyName isEqualToString:@"isLikedLocally"]) {
         return YES;
     }
+    else if ([propertyName isEqualToString:@"isCommentedLocally"]) {
+        return YES;
+    }
     
     return NO;
 }
