@@ -8,6 +8,13 @@
 
 #import "JSONModel.h"
 
+@interface JSONValueTransformer(NSDate)
+
+-(NSDate*)NSDateFromNSString:(NSString*)string;
+-(id)JSONObjectFromNSDate:(NSDate*)date;
+
+@end
+
 @interface ICJSONModel : JSONModel
 
 @property (strong, nonatomic) NSDate *createdAt;

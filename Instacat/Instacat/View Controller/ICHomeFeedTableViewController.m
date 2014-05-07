@@ -13,6 +13,7 @@
 #import <SDWebImage/UIImageView+WebCache.h>
 #import <CRToast/CRToast.h>
 #import <REComposeViewController/REComposeViewController.h>
+#import <NSDate+TimeAgo.h>
 
 typedef NS_ENUM(NSInteger, ICHomeFeedRows) {
     ICHomeFeedImageRow,
@@ -249,6 +250,7 @@ titleForHeaderInSection:(NSInteger)section {
 viewForHeaderInSection:(NSInteger)section {
     UIView* view = [[UIView alloc] init];
     UILabel* label = [[UILabel alloc] init];
+    UILabel* timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(280, 15, 50, 30)];
     
     view.backgroundColor = [UIColor.whiteColor colorWithAlphaComponent:0.8];
     
@@ -262,25 +264,45 @@ viewForHeaderInSection:(NSInteger)section {
     
     [view addSubview:label];
     
+    ICImage *image = self.images[section];
+    timeLabel.text = [image.createdAt timeAgo];
+    timeLabel.textAlignment = NSTextAlignmentRight;
+    timeLabel.textColor = IC_TEXT_COLOR;
+    timeLabel.font = [UIFont systemFontOfSize:IC_TEXT_SIZE];
+    
+    [timeLabel sizeToFit];
+    
+    CGRect f = timeLabel.frame;
+    f.origin.x = self.tableView.bounds.size.width - 15 - f.size.width;
+    timeLabel.frame = f;
+    
+    timeLabel.translatesAutoresizingMaskIntoConstraints = NO;
+    
+    [view addSubview:timeLabel];
+    
     [view addConstraints:
-     @[[NSLayoutConstraint constraintWithItem:label
+     @[
+       [NSLayoutConstraint constraintWithItem:label
                                     attribute:NSLayoutAttributeCenterX
                                     relatedBy:NSLayoutRelationEqual
                                        toItem:view
                                     attribute:NSLayoutAttributeCenterX
-                                   multiplier:1 constant:0],
+                                   multiplier:1
+                                     constant:0],
        [NSLayoutConstraint constraintWithItem:label
                                     attribute:NSLayoutAttributeCenterY
                                     relatedBy:NSLayoutRelationEqual
                                        toItem:view
                                     attribute:NSLayoutAttributeCenterY
-                                   multiplier:1 constant:0],
+                                   multiplier:1
+                                     constant:0],
        [NSLayoutConstraint constraintWithItem:label
                                     attribute:NSLayoutAttributeLeading
                                     relatedBy:NSLayoutRelationEqual
                                        toItem:view
                                     attribute:NSLayoutAttributeLeft
-                                   multiplier:0 constant:15],
+                                   multiplier:0
+                                     constant:15],
        ]];
     
     return view;

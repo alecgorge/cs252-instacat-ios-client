@@ -10,4 +10,5 @@ target "Instacat" do
     pod 'JSONModel', '~> 0.13'
     pod 'MKFoundationKit', '~> 1.2'
     pod 'REComposeViewController', '~> 2.3.1'
+    pod 'NSDate+TimeAgo', '~> 1.0.3'
 end
